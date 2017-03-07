@@ -9,7 +9,7 @@ conn = sqlite3.connect('donuts.db')
 
 def store_exists(id):
 	resp = conn.execute("SELECT 1 FROM locations WHERE id=?", (id,))
-	return resp.fetchone != None
+	return resp.fetchone() != None
 
 def insert_store(store):
 	stmt = '''INSERT INTO locations(id, locationnum, name, slug, detailurl, locationtype, address1, address2, city, province, postalcode, country, phone, latitude, longitude, coffee, wifi, locationhours) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)'''
