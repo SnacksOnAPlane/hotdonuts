@@ -17,9 +17,9 @@ hd.controller('DonutsController', ['$scope','$http', function($scope, $http) {
 
   $scope.hotStatus = function(id) {
     if ($scope.currents[id] == 1) {
-      return "Hot Now";
+      return "Hot Now!";
     } else {
-      return "Not";
+      return "Not Hot";
     }
   };
 
