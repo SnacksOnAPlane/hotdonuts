@@ -7,6 +7,7 @@ hd.controller('DonutsController', ['$scope','$http', function($scope, $http) {
 
   function populateCurrent(data) {
     $scope.currents = data.data;
+    $http.get("http://live.hotdonuts.info/locations.data").then(populateLocations);
   }
 
   function populateLocation(id) {
@@ -55,7 +56,6 @@ hd.controller('DonutsController', ['$scope','$http', function($scope, $http) {
   };
 
   $http.get("http://live.hotdonuts.info/current.data").then(populateCurrent);
-  $http.get("http://live.hotdonuts.info/locations.data").then(populateLocations);
   }]);
 
 hd.directive("hothistory", function() {
