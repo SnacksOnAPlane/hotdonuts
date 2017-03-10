@@ -23,6 +23,28 @@ hd.controller('DonutsController', ['$scope','$http', function($scope, $http) {
     }
   };
 
+  function proximityComparator(lat, lon) {
+    return function(l1, l2) {
+      var d1 = Math.sqrt(Math.pow(parseFloat(l1.latitude) - lat, 2) + Math.pow(parseFloat(l1.longitude) - lon, 2))
+      var d2 = Math.sqrt(Math.pow(parseFloat(l2.latitude) - lat, 2) + Math.pow(parseFloat(l2.longitude) - lon, 2))
+      return d1 - d2;
+    }
+  };
+
+  $scope.sortLocations = function() {
+    var zip = $scope.zip;
+
+    function googleResult(data) {
+      var locale = data.data.results[0].geometry.location;
+      var lat = locale.lat;
+      var lon = locale.lng;
+
+      $scope.locations.sort(proximityComparator(lat, lon));
+    }
+
+    $http.get("http://maps.googleapis.com/maps/api/geocode/json?address=" + zip).then(googleResult);
+  };
+
   $scope.locationHistory = {};
   $scope.expanded = {};
   $scope.toggleExpanded = function(id) {

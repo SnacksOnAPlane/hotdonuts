@@ -6,6 +6,10 @@
   </head>
   <body>
     <div ng-controller="DonutsController">
+      <form ng-submit="sortLocations()">
+        <input type="text" placeholder="your zip code" ng-model="zip">
+        <input type="submit">
+      </form>
       <ul class="locations">
         <li ng-repeat="location in locations">
           <div class="name">{{ location.name }}</div>
