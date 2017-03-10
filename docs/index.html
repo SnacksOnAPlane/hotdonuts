@@ -12,8 +12,8 @@
           <div class="address">{{ location.address1 }} {{ location.address2 }}</div>
           <div class="hot">{{ hotStatus(location.id) }}</div>
           <button ng-click="toggleExpanded(location.id)">History</button>
-          <div ng-show="expanded[id]">
-            {{ locationHistory[id] }}
+          <div ng-show="expanded[location.id]">
+            <hothistory data="locationHistory[location.id]">
           </div>
         </li>
       </ul>

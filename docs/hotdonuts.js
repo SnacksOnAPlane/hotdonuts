@@ -1,5 +1,6 @@
-angular.module('HotDonuts', [])
-.controller('DonutsController', ['$scope','$http', function($scope, $http) {
+var hd = angular.module('HotDonuts', []);
+
+hd.controller('DonutsController', ['$scope','$http', function($scope, $http) {
   function populateLocations(data) {
     $scope.locations = data.data;
   }
@@ -10,7 +11,7 @@ angular.module('HotDonuts', [])
 
   function populateLocation(id) {
     return function(data) {
-      $scope.locationHistory[id] = data;
+      $scope.locationHistory[id] = data.data;
     }
   }
 
@@ -27,11 +28,24 @@ angular.module('HotDonuts', [])
   $scope.toggleExpanded = function(id) {
     $scope.expanded[id] = !$scope.expanded[id];
     if ($scope.expanded[id]) {
-      debugger;
       $http.get("http://live.hotdonuts.info/" + id + ".data").then(populateLocation(id));
     }
   };
 
   $http.get("http://live.hotdonuts.info/current.data").then(populateCurrent);
   $http.get("http://live.hotdonuts.info/locations.data").then(populateLocations);
-}]);
+  }]);
+
+hd.directive("hothistory", function() {
+  return {
+    templateUrl: 'hothistory.html',
+    replace: true,
+    scope: {
+      data: "=data"
+    },
+
+    controller: ['$scope', function($scope) {
+    }]
+
+  };
+});
