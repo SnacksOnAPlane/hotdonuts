@@ -45,7 +45,30 @@ hd.directive("hothistory", function() {
     },
 
     controller: ['$scope', function($scope) {
-    }]
 
+      function splitIntoDays() {
+        $scope.days = [];
+        $scope.dayTransitions = {};
+        var data = $scope.data;
+        var old_ds = null;
+        for (var i in data) {
+          var ts = data[i][0];
+          var lit = data[i][1];
+          var d = new Date();
+          d.setTime(ts * 1000);
+          var ds = d.toDateString();
+          if (ds != old_ds) {
+            $scope.days.push(ds);
+          }
+          if (!$scope.dayTransitions[ds]) {
+            $scope.dayTransitions[ds] = [];
+          }
+          $scope.dayTransitions[ds].push([d, lit]);
+          old_ds = ds;
+        }
+      }
+
+      splitIntoDays();
+    }]
   };
 });
