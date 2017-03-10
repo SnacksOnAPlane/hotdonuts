@@ -40,6 +40,7 @@ for row in query("SELECT * FROM locations"):
     transitions.append([time, lit])
   k = bucket.new_key("%s.data" % id)
   k.set_contents_from_string(json.dumps(transitions))
+  k.set_canned_acl('public-read')
 
 conn.close()
 k = bucket.new_key("current.data")
