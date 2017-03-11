@@ -13,19 +13,26 @@
       ga('send', 'pageview');
 
     </script>
+    <link rel="stylesheet" type="text/css" href="normalize.css">
+    <link rel="stylesheet" type="text/css" href="skeleton.css">
+    <link rel="stylesheet" type="text/css" href="donuts.css">
   </head>
   <body>
-    <div ng-controller="DonutsController">
+    <div class="container" ng-controller="DonutsController">
       <form ng-submit="sortLocations()">
         <input type="text" placeholder="your zip code" ng-model="zip">
         <input type="submit">
       </form>
       <ul class="locations">
-        <li ng-repeat="location in locations">
-          <div class="name">{{ location.name }}</div>
-          <div class="address">{{ location.address1 }} {{ location.address2 }}</div>
-          <div class="citystate">{{ location.city }} {{location.province }} {{ location.postalcode }} {{ location.country }}</div>
-          <div class="phone">{{ location.phone }}</div>
+        <li ng-repeat="location in locations" class="location">
+          {{ location.name }}
+          <div class="address">
+            <a ng-href="{{ gmapsLink(location) }}">
+              {{ location.address1 }} {{ location.address2 }}<br />
+              {{ location.city }}, {{location.province }} {{ location.postalcode }} {{ location.country }}<br />
+            </a>
+            <a ng-href="tel:{{ location.phone }}" ng-show="location.phone != '() -x'">{{ location.phone }}</a>
+          </div>
           <div class="hot">Currently: {{ hotStatus(location.id) }}</div>
           <button ng-click="toggleExpanded(location.id)">History</button>
           <div ng-if="expanded[location.id] && locationHistory[location.id]">

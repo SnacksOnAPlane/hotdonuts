@@ -1,10 +1,12 @@
 <div>
-  <div ng-repeat="day in days">
-    {{ day }}
-    <ul>
-      <li ng-repeat="trans in dayTransitions[day]">
-        {{ trans[0].toTimeString() }} {{ trans[1] }}
-      </li>
-    </ul>
-  </div>
+  <ul>
+    <li ng-repeat="day in days">
+      {{ day }}
+      <ul>
+        <li ng-repeat="trans in dayTransitions[day]">
+          {{ trans[0].toTimeString().substring(0,5) }} {{ trans[1] }}
+        </li>
+      </ul>
+    </li>
+  </ul>
 </div>

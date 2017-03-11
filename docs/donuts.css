@@ -1,0 +1,12 @@
+ul.locations li.location {
+  border: 1px solid black;
+  list-style: none;
+  padding: 5px;
+  border-radius:10px;
+  margin: 5px;
+}
+
+ul.locations li div.address {
+  float: right;
+  width: 250px;
+}

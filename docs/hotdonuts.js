@@ -24,6 +24,11 @@ hd.controller('DonutsController', ['$scope','$http', function($scope, $http) {
     }
   };
 
+  $scope.gmapsLink = function(loc) {
+    var q = loc.address1 + " " + loc.address2 + " " + loc.city + ", " + loc.province + " " + loc.postalcode;
+    return "http://maps.google.com/?q=" + q;
+  };
+
   function proximityComparator(lat, lon) {
     return function(l1, l2) {
       var d1 = Math.sqrt(Math.pow(parseFloat(l1.latitude) - lat, 2) + Math.pow(parseFloat(l1.longitude) - lon, 2))
