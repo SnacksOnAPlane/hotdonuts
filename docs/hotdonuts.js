@@ -1,8 +1,13 @@
 var hd = angular.module('HotDonuts', []);
 
-hd.controller('DonutsController', ['$scope','$http', function($scope, $http) {
+hd.controller('DonutsController', ['$scope','$http','$location', function($scope, $http, $location) {
   function populateLocations(data) {
     $scope.locations = data.data;
+    var zip = $location.search()['zip'];
+    if (zip) {
+      $scope.zip = zip;
+      sortByZip(zip);
+    };
   }
 
   function populateCurrent(data) {
@@ -39,7 +44,11 @@ hd.controller('DonutsController', ['$scope','$http', function($scope, $http) {
 
   $scope.sortLocations = function() {
     var zip = $scope.zip;
+    $location.search('zip', zip);
+    sortByZip(zip);
+  }
 
+  function sortByZip(zip) {
     function googleResult(data) {
       var locale = data.data.results[0].geometry.location;
       var lat = locale.lat;

@@ -19,3 +19,7 @@ form {
 input#search {
   flex: 1;
 }
+
+.info-links {
+  text-align: center;
+}
