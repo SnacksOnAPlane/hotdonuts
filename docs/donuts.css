@@ -10,3 +10,12 @@ ul.locations li div.address {
   float: right;
   width: 250px;
 }
+
+form {
+  display: flex;
+  flex-direction: row;
+}
+
+input#search {
+  flex: 1;
+}

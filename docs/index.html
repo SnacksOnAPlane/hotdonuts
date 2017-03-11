@@ -20,7 +20,7 @@
   <body>
     <div class="container" ng-controller="DonutsController">
       <form ng-submit="sortLocations()">
-        <input type="text" placeholder="your zip code" ng-model="zip">
+        <input id="search" type="text" placeholder="your zip code" ng-model="zip">
         <input type="submit">
       </form>
       <ul class="locations">
