@@ -5,7 +5,7 @@ hd.controller('DonutsController', ['$scope','$http','$location', function($scope
     $scope.locations = data.data;
     var zip = $location.search()['zip'];
     if (zip) {
-      $scope.zip = zip;
+      $scope.zip = parseInt(zip);
       sortByZip(zip);
     };
   }
@@ -102,6 +102,7 @@ hd.directive("hothistory", function() {
           $scope.dayTransitions[ds].push([d, lit]);
           old_ds = ds;
         }
+        $scope.days = $scope.days.reverse();
       }
 
       splitIntoDays();
