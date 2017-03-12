@@ -1,7 +1,7 @@
 <div>
   <ul>
     <li ng-repeat="day in days" class="day">
-      {{ day }}
+      {{ day.substring(0,10) }}
       <ul>
         <li ng-repeat="trans in dayTransitions[day]">
           {{ trans[0].toTimeString().substring(0,5) }} {{ trans[1] }}

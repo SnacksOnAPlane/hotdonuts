@@ -19,6 +19,10 @@ li.day {
   border-radius: 5px;
 }
 
+li.day ul {
+  margin-left: 0;
+}
+
 ul.locations li div.address {
   float: right;
   width: 250px;
@@ -35,4 +39,9 @@ input#search {
 
 .info-links {
   text-align: center;
+}
+
+h5 {
+  margin-bottom: 0.5rem;
+  margin-top: 1.5rem;
 }

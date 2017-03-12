@@ -97,11 +97,17 @@ hd.directive("hothistory", function() {
         $scope.dayTransitions = {};
         var data = $scope.data;
         var old_ds = null;
+        var twoWeeksAgo = new Date();
+        twoWeeksAgo.setDate(twoWeeksAgo.getDate() - 14);
+        twoWeeksAgo.setHours(0,0,0,0);
         for (var i in data) {
           var ts = data[i][0];
           var lit = data[i][1];
           var d = new Date();
           d.setTime(ts * 1000);
+          if (d < twoWeeksAgo) {
+            continue;
+          }
           var ds = d.toDateString();
           if (ds != old_ds) {
             $scope.days.push(ds);
