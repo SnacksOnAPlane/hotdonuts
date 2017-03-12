@@ -19,14 +19,14 @@
   <body>
     <div class="container" ng-controller="DonutsController">
       <div class="row full-width info-links">
-        <a href="about.html">about this site</a>
+        <a href="about.html">about this site</a> - click on location for history
       </div>
       <form ng-submit="sortLocations()">
         <input id="search" type="text" placeholder="your zip code" ng-model="zip">
         <input type="submit">
       </form>
       <ul class="locations">
-        <li ng-repeat="location in locations" class="location">
+        <li ng-repeat="location in locations" class="location" ng-class="{ hot: currents[location.id] }" ng-click="toggleExpanded(location.id)">
           {{ location.name }}
           <div class="address">
             <a ng-href="{{ gmapsLink(location) }}">
@@ -36,10 +36,10 @@
             <a ng-href="tel:{{ location.phone }}" ng-show="location.phone != '() -x'">{{ location.phone }}</a>
           </div>
           <div class="hot">Currently: {{ hotStatus(location.id) }}</div>
-          <button ng-click="toggleExpanded(location.id)">History</button>
           <div ng-if="expanded[location.id] && locationHistory[location.id]">
             <hothistory data="locationHistory[location.id]">
           </div>
+          <div style="clear: both;"></div>
         </li>
       </ul>
     </div>

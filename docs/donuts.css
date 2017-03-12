@@ -4,6 +4,11 @@ ul.locations li.location {
   padding: 5px;
   border-radius:10px;
   margin: 5px;
+  background-color: white;
+}
+
+ul.locations li.location.hot {
+  background-color: rgba(208, 24, 72, 0.34);
 }
 
 ul.locations li div.address {
