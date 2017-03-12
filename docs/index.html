@@ -36,7 +36,7 @@
             </a>
             <a ng-href="tel:{{ location.phone }}" ng-show="location.phone != '() -x'">{{ location.phone }}</a>
           </div>
-          <div class="hot">Currently: {{ hotStatus(location.id) }}</div>
+          <div class="hot">{{ hotStatus(location.id) }}</div>
           <div ng-if="expanded[location.id] && locationHistory[location.id]">
             <hothistory data="locationHistory[location.id]">
           </div>
