@@ -11,6 +11,14 @@ ul.locations li.location.hot {
   background-color: rgba(208, 24, 72, 0.34);
 }
 
+li.day {
+  float: left;
+  margin: 5px;
+  padding: 5px;
+  border: 1px solid black;
+  border-radius: 5px;
+}
+
 ul.locations li div.address {
   float: right;
   width: 250px;

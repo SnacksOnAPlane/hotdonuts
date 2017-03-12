@@ -39,6 +39,7 @@
           <div ng-if="expanded[location.id] && locationHistory[location.id]">
             <hothistory data="locationHistory[location.id]">
           </div>
+          <div ng-if="!expanded[location.id]">click for history</div>
           <div style="clear: both;"></div>
         </li>
       </ul>
