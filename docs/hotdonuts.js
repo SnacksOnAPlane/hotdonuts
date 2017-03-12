@@ -1,12 +1,18 @@
 var hd = angular.module('HotDonuts', []);
 
 hd.controller('DonutsController', ['$scope','$http','$location', function($scope, $http, $location) {
+  function positionReceived(pos) {
+    sortByLatLon(pos.coords.latitude, pos.coords.longitude);
+  };
+
   function populateLocations(data) {
     $scope.locations = data.data;
     var zip = $location.search()['zip'];
     if (zip) {
       $scope.zip = parseInt(zip);
       sortByZip(zip);
+    } else if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(positionReceived);
     };
   }
 
@@ -48,13 +54,17 @@ hd.controller('DonutsController', ['$scope','$http','$location', function($scope
     sortByZip(zip);
   }
 
+  function sortByLatLon(lat, lon) {
+    $scope.locations.sort(proximityComparator(lat, lon));
+  }
+
   function sortByZip(zip) {
     function googleResult(data) {
       var locale = data.data.results[0].geometry.location;
       var lat = locale.lat;
       var lon = locale.lng;
 
-      $scope.locations.sort(proximityComparator(lat, lon));
+      sortByLatLon(lat, lon);
     }
 
     $http.get("http://maps.googleapis.com/maps/api/geocode/json?address=" + zip).then(googleResult);
