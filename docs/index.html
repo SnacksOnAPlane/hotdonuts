@@ -48,6 +48,7 @@
             <hothistory data="locationHistory[location.id]">
           </div>
           <div ng-if="!expanded[location.id]">click for history</div>
+          <div ng-if="expanded[location.id] && !locationHistory[location.id]">loading history...</div>
           <div style="clear: both;"></div>
         </li>
       </ul>
