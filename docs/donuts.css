@@ -13,6 +13,10 @@ ul.locations li.location.hot {
   color: white;
 }
 
+ul.locations li.location.hot a {
+  color: white;
+}
+
 li.day {
   float: left;
   margin: 5px;
