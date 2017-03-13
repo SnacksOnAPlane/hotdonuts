@@ -72,7 +72,11 @@ hd.controller('DonutsController', ['$scope','$http','$location', function($scope
 
   $scope.locationHistory = {};
   $scope.expanded = {};
-  $scope.toggleExpanded = function(id) {
+  $scope.toggleExpanded = function($event, id) {
+    // don't expand on link clicks
+    if ($event.target.nodeName == 'A') {
+      return;
+    }
     $scope.expanded[id] = !$scope.expanded[id];
     if ($scope.expanded[id]) {
       $http.get("http://live.hotdonuts.info/" + id + ".data").then(populateLocation(id));

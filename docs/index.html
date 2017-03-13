@@ -34,7 +34,7 @@
         <input type="submit">
       </form>
       <ul class="locations">
-        <li ng-repeat="location in locations" class="location" ng-class="{ hot: currents[location.id] }" ng-click="toggleExpanded(location.id)">
+        <li ng-repeat="location in locations" class="location" ng-class="{ hot: currents[location.id] }" ng-click="toggleExpanded($event, location.id)">
           {{ location.name }}
           <div class="address">
             <a ng-href="{{ gmapsLink(location) }}">
