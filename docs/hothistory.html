@@ -4,7 +4,9 @@
       {{ day.substring(0,10) }}
       <ul>
         <li ng-repeat="trans in dayTransitions[day]">
-          {{ trans[0].toTimeString().substring(0,5) }} {{ trans[1] }}
+          {{ trans[0].toTimeString().substring(0,5) }} <span
+            ng-show="trans[1]">&#x1F525; on</span><span
+            ng-show="!trans[1]">&#x2744; off</span>
         </li>
       </ul>
     </li>

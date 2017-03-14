@@ -27,14 +27,6 @@ hd.controller('DonutsController', ['$scope','$http','$location', function($scope
     }
   }
 
-  $scope.hotStatus = function(id) {
-    if ($scope.currents[id] == 1) {
-      return "Hot Now!";
-    } else {
-      return "Not Hot";
-    }
-  };
-
   $scope.gmapsLink = function(loc) {
     var q = loc.address1 + " " + loc.address2 + " " + loc.city + ", " + loc.province + " " + loc.postalcode;
     return "http://maps.google.com/?q=" + encodeURIComponent(q);
