@@ -9,7 +9,7 @@ hd.controller('DonutsController', ['$scope','$http','$location', function($scope
     $scope.locations = data.data;
     var zip = $location.search()['zip'];
     if (zip) {
-      $scope.zip = parseInt(zip);
+      $scope.zip = zip;
       sortByZip(zip);
     } else if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(positionReceived);
