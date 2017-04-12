@@ -31,7 +31,7 @@ def insert_store(store):
 	conn.execute(stmt, values)
 
 def set_lit(id, lit):
-  conn.execute("INSERT INTO lightstatus(location_id, lit, time) VALUES(?, ?, strftime('%s','now'))", (id, lit))
+  # conn.execute("INSERT INTO lightstatus(location_id, lit, time) VALUES(?, ?, strftime('%s','now'))", (id, lit))
   old_lit = None
   for result in conn.execute("SELECT lit FROM transitions WHERE location_id=? ORDER BY time DESC LIMIT 1", (id,)):
     old_lit = result[0]
