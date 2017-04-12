@@ -52,7 +52,7 @@ def update_s3_currents():
 
 def update_s3_store(store):
   transitions = []
-  for status in conn.execute("SELECT lit, time FROM transitions WHERE location_id=? ORDER BY time ASC", (store['Id'],)):
+  for status in conn.execute("SELECT lit, time FROM transitions WHERE location_id=? AND time > strftime('%s', 'now', '-15 days') ORDER BY time ASC", (store['Id'],)):
     lit, time = status
     transitions.append([time, lit])
   k = bucket.new_key("%s.data" % store['Id'])
